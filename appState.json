@@ -22,7 +22,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "sigma-project1/lambda.js",
-        "code": "let AWS = require('aws-sdk');\nconst ses = new AWS.SES();\n\nexports.handler = function (event, context, callback) {\n\n    let email = event['email']\n    let subject = event['subject']\n    let body = event['body']\n    ses.sendEmail({\n        Destination: {\n            ToAddresses: [email],\n            CcAddresses: [],\n            BccAddresses: []\n        },\n        Message: {\n            Body: {\n                Text: {\n                    Data: body\n                }\n            },\n            Subject: {\n                Data: subject\n            }\n        },\n        Source: 'salman@fostrum.com'\n    }, function (err, data) {\n        if (err) console.log(err, err.stack); // an error occurred\n        else console.log(data);           // successful response\n    });\n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "code": "let AWS = require('aws-sdk');\nconst ses = new AWS.SES();\n\nexports.handler = function (event, context, callback) {\n\n    let email = event['email']\n    let subject = event['subject']\n    let body = event['body']\n    ses.sendEmail({\n        Destination: {\n            ToAddresses: [email],\n            CcAddresses: [],\n            BccAddresses: []\n        },\n        Message: {\n            Body: {\n                Text: {\n                    Data: body\n                }\n            },\n            Subject: {\n                Data: subject\n            }\n        },\n        Source: 'info@fostrum.com'\n    }, function (err, data) {\n        if (err) console.log(err, err.stack); // an error occurred\n        else console.log(data);           // successful response\n    });\n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -32,7 +32,7 @@
         },
         "triggers": [
           {
-            "resourceName": "apigusEast1emailSigmasendEmailpost",
+            "resourceName": "apigusEast1devFostrumApisendEmailpost",
             "config": {}
           }
         ],
@@ -41,7 +41,7 @@
             "id": "0caccc3b-5267-4468-8a8d-39e3dc9b4c0a",
             "name": "Test Email",
             "functionId": "f41e963d-5d40-44ed-9dfd-e4ae0fcd4315",
-            "event": "{\n    \"email\": \"info@fostrum.com\",\n    \"subject\": \"Alberto JAJAJAJA\",\n    \"body\": \"JAJAJAJ JOKEROOO\"\n}"
+            "event": "{\n    \"email\": \"salmanprk@gmail.com\",\n    \"subject\": \"Alberto JAJAJAJA\",\n    \"body\": \"JAJAJAJ JOKEROOO\"\n}"
           }
         }
       }
@@ -69,25 +69,6 @@
               "html": ""
             }
           }
-        }
-      },
-      "apigusEast1emailSigmasendEmailpost": {
-        "name": "apigusEast1emailSigmasendEmailpost",
-        "type": "API_GATEWAY",
-        "config": {
-          "selectedRegion": "us-east-1",
-          "apiMode": 0,
-          "apiName": "email-sigma",
-          "endpointType": "EDGE",
-          "resourceMode": 0,
-          "resourceName": "sendEmail",
-          "resourcePath": "/sendEmail",
-          "restMethod": "POST",
-          "proxyIntegration": false,
-          "enableCORS": true,
-          "stageMode": 0,
-          "stageName": "dev",
-          "mode": 0
         }
       },
       "ses-www.fostrum.com": {
@@ -124,6 +105,34 @@
             }
           }
         }
+      },
+      "apigusEast1devFostrumApisendEmailpost": {
+        "name": "apigusEast1devFostrumApisendEmailpost",
+        "type": "API_GATEWAY",
+        "config": {
+          "selectedRegion": "us-east-1",
+          "apiMode": 1,
+          "apiName": "dev-fostrum-api",
+          "apiId": "eqo74ev0x3",
+          "endpointType": "EDGE",
+          "rootResourceId": "l7pjdcjh98",
+          "existingResources": {
+            "/requestToken": "ft4ea2",
+            "/home": "hhr025",
+            "/chartify": "his2ek",
+            "/": "l7pjdcjh98",
+            "/callback": "pz72q7"
+          },
+          "resourceMode": 0,
+          "resourceName": "sendEmail",
+          "resourcePath": "/sendEmail",
+          "restMethod": "POST",
+          "proxyIntegration": false,
+          "enableCORS": true,
+          "stageMode": 0,
+          "stageName": "dev",
+          "mode": 1
+        }
       }
     },
     "customTemplate": {
@@ -159,7 +168,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1570659434577
+    "lastSave": 1573262644404
   },
   "VCS_STATE": {
     "provider": "GitHub",
